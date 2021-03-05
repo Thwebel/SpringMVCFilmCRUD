@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 class FilmTest {
 	// this is a comment, new change
+	// This is another Comment
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
