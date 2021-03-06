@@ -16,26 +16,108 @@
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
 <title>Create A Film</title>
+<style>
+    .create-form{
+        margin: 50px;        
+    }
+</style>
 </head>
 
 <body>
-
+<div class="create-form">
+<h1>Enter Film Information Here!</h1>
 	<form action="MakeFilm.do" method="POST">
-		<input type="text" name="ID" value="" size="4" /> <input type="text"
-			name="title" value="" size="4" /> <input type="text"
-			name="description" value="" size="4" /> <input type="text"
-			name="releaseYear" value="" size="4" /> <input type="text"
-			name="languageID" value="" size="4" /> <input type="text"
-			name="rentalDuration" value="" size="4" /> <input type="text"
-			name="rentalRate" value="" size="4" /> <input type="text"
-			name="length" value="" size="4" /> <input type="text"
-			name="replacementCost" value="" size="4" /> <input type="text"
-			name="rating" value="" size="4" /> <input type="text"
-			name="specialFeatures" value="" size="4" /> <input type="submit"
-			value="Search" />
+	
+		<div class="form-group">
+		<!-- text -->
+		<label for="title">Title</label>
+		<input type="text" name="title" value="" size="15" placeholder="Title" required/> 
+		</div>
+		<!-- large text -->
+		<div class="form-group">
+		<label for="inputDescription">Description</label>
+		<input type="text" name="description" value="" size="4" placeholder="Description" required/> 
+		</div>
+		
+		<div class="form-group">
+		<!-- drop down -->
+		<label for="releaseYear">Release Year</label>
+		<input type="Number" name="releaseYear" min="1920" max="2021" size="6" placeholder="Year" required/> 
+		</div>
+		
+		<div class="form-group">
+		<!-- drop down -->
+		<label for="languageID">Language</label>
+		<select name="languageID" id="languageID">
+			<option value="1">English</option>
+			<option value="2">Italian</option>
+			<option value="3">Japanese</option>
+			<option value="4">Mandarin</option>
+			<option value="5">French</option>
+			<option value="6">German</option>
+		</select>
+		</div>
+		
+		<div class="form-group">
+		<!--time?  -->
+		<label for="inputRentalDuration">Rental Duration</label>
+		<input type="number" name="rentalDuration" min="0" max="10" size="4" placeholder="Title" required/> 
+		</div>
+		
+		<div class="form-group">
+		<!-- drop down rates -->
+		<label for="inputRentalRate">Rental Rate</label>
+		<input type="number" name="rentalRate" min="0" max="100" step=0.01 placeholder="Price" required/> 
+		</div>
+		
+		<div class="form-group">
+		<!-- in min -->
+		<label for="length">Film Length in Minutes</label>
+		<input type="number" name="length" min="0" max="1000" placeholder="RunTime" required/> 
+		</div>
+		
+		<div class="form-group">
+		<!-- replacement -->
+		<label for="replacementCost">Cost to Replace</label>
+		<input type="text" name="replacementCost" min="0" max="100" step=0.01 placeholder="Cost" size="4" required/> 
+		</div>
+		
+		<div class="form-group">
+		<!-- drop down -->
+		<label for="rating">Rating</label>
+		<select name="rating" id="rating">
+			<option value="G">G</option>
+			<option value="PG">PG</option>
+			<option value="PG13">PG-13</option>
+			<option value="R">R</option>
+			<option value="NC17">NC-17</option>
+		</select>
+		</div>
+		
+		<div class="form-group">
+		<!-- check box -->
+		  <h5><strong>Special Features</strong></h5><br>
+		  <input type="checkbox" id="Commentaries" name="specialFeatures" value="Commentaries">
+		  <label for="Commentaries">Commentaries</label><br>
+		
+		  <input type="checkbox" id="DeletedScenes" name="specialFeatures" value="Deleted Scenes">
+		  <label for="DeletedScenes"> Deleted Scenes</label><br>
+		  
+		  <input type="checkbox" id="BehindScenes" name="specialFeatures" value="Behind the Scenes">
+		  <label for="BehindScenes">Behind the Scenes</label>
+		  
+		  <input type="checkbox" id="Trailers" name="specialFeatures" value="Trailers">
+		  <label for="Trailers">Trailers</label>
+		  
+		</div>
+		
+		<button type="submit" class="btn btn-primary">Create</button>
+			
+			
+			
 	</form>
 
-
+	</div>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
