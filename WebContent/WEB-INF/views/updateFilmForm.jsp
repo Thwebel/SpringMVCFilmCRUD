@@ -26,8 +26,12 @@
 <body>
 <div class="create-form">
 <h1>Enter Film Information Here!</h1>
-	<form action="UpdateFilm.do" method="PUT">
+	<form action="UpdateFilm.do" method="POST">
 	
+		<div class="form-group">
+		<!-- text -->
+		<input type="hidden" name="id" value="${film.id}" required/> 
+		</div>
 		<div class="form-group">
 		<!-- text -->
 		<label for="title">Title</label>

@@ -38,6 +38,33 @@ public class FilmController {
 
 		return mv;
 	}
+	
+	@RequestMapping(path = "EditFilm.do", params = "ID", method = RequestMethod.GET)
+	public ModelAndView getUpdateForm(int ID) {
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("WEB-INF/views/updateFilmForm.jsp");
+		try {
+			mv.addObject("film", filmDAO.findFilmById(ID));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return mv;
+	}
+	
+	@RequestMapping(path="UpdateFilm.do",
+			method = RequestMethod.POST)
+	public ModelAndView updateFilm(Film film, RedirectAttributes redir) {
+		ModelAndView mv = new ModelAndView();
+		
+		filmDAO.updateFilm(film);
+		
+		redir.addFlashAttribute("film", film);
+		mv.setViewName("redirect:filmCreated.do");
+		
+		return mv;
+	}
 
 //	@RequestMapping(path = { "GetActors.do" }, params = "ID", method = RequestMethod.GET)
 //	public ModelAndView findActorById(int ID) {
