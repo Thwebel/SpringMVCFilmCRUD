@@ -20,6 +20,7 @@ public class Film {
 	private List<Actor> actors;
 	private List<Film> films; 
 	
+	
 	public Film() {}
 	
 	public Film(int id, String title, String description, String releaseYear, int languageId, int rentalDuration,

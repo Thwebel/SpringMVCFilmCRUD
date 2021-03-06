@@ -71,7 +71,30 @@
 					</table>
 				</c:otherwise>
 			</c:choose>
+           
+            <c:choose>
 
+				<c:when test="${empty category}">
+					<h3>No categories were found</h3>
+				</c:when>
+
+				<c:otherwise>
+					<table>
+						<thead>
+							<tr>
+								<th>Category</th>
+							</tr>
+						</thead>
+						<tbody>
+								<tr>
+
+									<td>${category.name}</td>
+
+								</tr>
+						</tbody>
+					</table>
+				</c:otherwise>
+			</c:choose>
 
 
 		</c:otherwise>
