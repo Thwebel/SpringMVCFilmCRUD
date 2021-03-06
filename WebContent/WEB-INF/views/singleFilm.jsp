@@ -47,7 +47,7 @@
 			<c:choose>
 
 				<c:when test="${empty actors}">
-					<h3>No actors were found found</h3>
+					<h3>No actors were found</h3>
 				</c:when>
 
 				<c:otherwise>

@@ -66,19 +66,19 @@ public class FilmController {
 		return mv;
 	}
 
-	@RequestMapping(path = { "GetActors.do" }, params = "ID", method = RequestMethod.GET)
-	public ModelAndView findActorById(int ID) {
-		ModelAndView mv = new ModelAndView();
-
-		mv.setViewName("WEB-INF/views/singleFilm.jsp");
-		try {
-			mv.addObject("actors", filmDAO.findActorById(ID));
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return mv;
-	}
+//	@RequestMapping(path = { "GetActors.do" }, params = "ID", method = RequestMethod.GET)
+//	public ModelAndView findActorById(int ID) {
+//		ModelAndView mv = new ModelAndView();
+//
+//		mv.setViewName("WEB-INF/views/singleFilm.jsp");
+//		try {
+//			mv.addObject("actors", filmDAO.findActorById(ID));
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//
+//		return mv;
+//	}
 
 //	@RequestMapping(path = { "GetFilm.do" }, params = "filmId", method = RequestMethod.GET)
 //	public ModelAndView findActorsByFilmId(int filmId) {
@@ -100,7 +100,7 @@ public class FilmController {
 
 		mv.setViewName("WEB-INF/views/results.jsp");
 		try {
-			mv.addObject("films", filmDAO.findFilmByKeyword("%" + keyword + "%"));
+			mv.addObject("films", filmDAO.findFilmByKeyword(keyword));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
