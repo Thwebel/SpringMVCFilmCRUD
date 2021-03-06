@@ -77,5 +77,18 @@ public class FilmController {
 
 		return mv;
 	}
+	@RequestMapping(path="GetForm.do")
+	public String getForm() {
+		return "WEB-INF/views/createFilmForm.jsp";
+	}
 
 }
+
+
+
+
+
+
+
+
+
