@@ -47,26 +47,26 @@
 		
 		<div class="form-group">
 		<!-- drop down -->
-		<label for="languageID">Language</label>
-		<select name="languageID" id="languageID">
-			<option value="1">English</option>
-			<option value="2">Italian</option>
-			<option value="3">Japanese</option>
-			<option value="4">Mandarin</option>
-			<option value="5">French</option>
-			<option value="6">German</option>
+		<label for="languageId">Language</label>
+		<select name="languageId" id="languageId">
+			<option value=1>English</option>
+			<option value=2>Italian</option>
+			<option value=3>Japanese</option>
+			<option value=4>Mandarin</option>
+			<option value=5>French</option>
+			<option value=6>German</option>
 		</select>
 		</div>
 		
 		<div class="form-group">
 		<!--time?  -->
-		<label for="inputRentalDuration">Rental Duration</label>
+		<label for="rentalDuration">Rental Duration</label>
 		<input type="number" name="rentalDuration" min="0" max="10" size="4" placeholder="Title" required/> 
 		</div>
 		
 		<div class="form-group">
 		<!-- drop down rates -->
-		<label for="inputRentalRate">Rental Rate</label>
+		<label for="rentalRate">Rental Rate</label>
 		<input type="number" name="rentalRate" min="0" max="100" step=0.01 placeholder="Price" required/> 
 		</div>
 		
