@@ -14,12 +14,9 @@ import org.springframework.stereotype.Component;
 import com.skilldistillery.film.entities.Actor;
 import com.skilldistillery.film.entities.Film;
 
-
-
 @Component
 public class FilmDAOJdbcImpl implements FilmDAO {
 
-	
 	private static final String URL = "jdbc:mysql://localhost:3306/sdvid?useSSL=false";
 
 	static {
@@ -31,8 +28,6 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 		}
 
 	}
-
-	
 
 	@Override
 	public Film findFilmById(int filmId) throws SQLException {
@@ -212,84 +207,81 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 
 	@Override
 	public boolean deleteFilm(Film film) {
-	
+
 		String user = "student";
 		String pass = "student";
-		
-			  Connection conn = null;
-			  
-			  try {
-			    conn = DriverManager.getConnection(URL, user, pass);
-			    
-			    conn.setAutoCommit(false); // START TRANSACTION
-			    
-			    String sql = "DELETE FROM film WHERE id = ?";
-			    
-			    PreparedStatement stmt = conn.prepareStatement(sql);
-			    stmt.setInt(1, film.getId());
-			    
-			    int updateCount = stmt.executeUpdate();
-			    System.out.println(updateCount + " film was deleted");
-			    
-			    stmt = conn.prepareStatement(sql);
-			    
-			    conn.commit();             // COMMIT TRANSACTION
-			  }
-			  catch (SQLException sqle) {
-			    sqle.printStackTrace();
-			    if (conn != null) {
-			      try { conn.rollback(); }
-			      catch (SQLException sqle2) {
-			        System.err.println("Error trying to rollback");
-			      }
-			    }
-			    return false;
-			  }
-			  return true;
+
+		Connection conn = null;
+
+		try {
+			conn = DriverManager.getConnection(URL, user, pass);
+
+			conn.setAutoCommit(false); // START TRANSACTION
+
+			String sql = "DELETE FROM film WHERE id = ?";
+
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, film.getId());
+
+			int updateCount = stmt.executeUpdate();
+			System.out.println(updateCount + " film was deleted");
+
+			stmt = conn.prepareStatement(sql);
+
+			conn.commit(); // COMMIT TRANSACTION
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+			if (conn != null) {
+				try {
+					conn.rollback();
+				} catch (SQLException sqle2) {
+					System.err.println("Error trying to rollback");
+				}
 			}
+			return false;
+		}
+		return true;
+	}
 
 	@Override
 	public boolean updateFilm(Film film) {
 
 		String user = "student";
 		String pass = "student";
-		
-		Connection conn = null;
-		  try {
-		    conn = DriverManager.getConnection(URL, user, pass);
-		    
-		    conn.setAutoCommit(false); // START TRANSACTION
-		    
-		    String sql = "UPDATE film SET title=?, description=?, release_year=?, rating=? "
-		               + " WHERE id=?";
-		    
-		    PreparedStatement stmt = conn.prepareStatement(sql);
-		    stmt.setString(1, film.getTitle());
-		    stmt.setString(2, film.getDescription());
-		    stmt.setString(3, film.getReleaseYear());
-		    stmt.setString(4, film.getRating());
-		    stmt.setInt(5, film.getId());
-		    
-		    
-		    
-		    int updateCount = stmt.executeUpdate();
-		    System.out.println(updateCount + " film was updated");
-		      conn.commit();           // COMMIT TRANSACTION
-		    
-		  } catch (SQLException sqle) {
-		    sqle.printStackTrace();
-		    if (conn != null) {
-		      try { conn.rollback(); } // ROLLBACK TRANSACTION ON ERROR
-		      catch (SQLException sqle2) {
-		        System.err.println("Error trying to rollback");
-		      }
-		    }
-		    return false;
-		  }
-		  return true;
-		
-	}
 
-	
+		Connection conn = null;
+		try {
+			conn = DriverManager.getConnection(URL, user, pass);
+
+			conn.setAutoCommit(false); // START TRANSACTION
+
+			String sql = "UPDATE film SET title=?, description=?, release_year=?, rating=? " + " WHERE id=?";
+
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, film.getTitle());
+			stmt.setString(2, film.getDescription());
+			stmt.setString(3, film.getReleaseYear());
+			stmt.setString(4, film.getRating());
+			stmt.setInt(5, film.getId());
+
+			int updateCount = stmt.executeUpdate();
+			System.out.println(updateCount + " film was updated");
+			conn.commit(); // COMMIT TRANSACTION
+
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+			if (conn != null) {
+				try {
+					conn.rollback();
+				} // ROLLBACK TRANSACTION ON ERROR
+				catch (SQLException sqle2) {
+					System.err.println("Error trying to rollback");
+				}
+			}
+			return false;
+		}
+		return true;
+
+	}
 
 }
