@@ -152,7 +152,7 @@ public class FilmController {
 
 		ModelAndView mv = new ModelAndView();
 		
-		mv.setViewName("WEB-INF/views/singleFilm.jsp");
+		mv.setViewName("WEB-INF/views/filmDeleted.jsp");
 		mv.addObject("deleted", filmDAO.deleteFilm(film));
 		mv.addObject("film", film);
 		

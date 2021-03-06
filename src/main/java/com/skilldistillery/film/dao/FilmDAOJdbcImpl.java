@@ -280,8 +280,6 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 		String[] keyWords = searchText.split(" ");
 
 		String sqlQuery = "SELECT * FROM film " + "JOIN language ON film.language_id = language.id "
-				+ "JOIN film_category ON film.id = film_category.film_id "
-				+ "JOIN category ON film_category.category_id = category.id "
 				+ "WHERE title LIKE ? OR description LIKE ? ";
 		if (keyWords.length > 1) {
 			for (int i = 0; i < (keyWords.length - 1); i++) {
