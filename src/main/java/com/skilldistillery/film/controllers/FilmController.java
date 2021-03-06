@@ -15,21 +15,66 @@ public class FilmController {
 
 	@Autowired
 	private FilmDAO filmDAO;
-	
-		@RequestMapping( path = {"/","home.do"}, params = "id", method = RequestMethod.GET )
-		public ModelAndView findFilmById(int id) { 
-			ModelAndView mv = new ModelAndView();        
-			                                             
-			mv.setViewName("WEB-INF/views/index.jsp");
-			try {
-				mv.addObject("films", filmDAO.findFilmById(id));
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			return mv;
+
+	@RequestMapping(path = { "/", "home.do" })
+	public String home() {
+		return "WEB-INF/views/index.jsp";
 	}
-	
-	
+
+	@RequestMapping(path = "GetFilm.do", params = "ID", method = RequestMethod.GET)
+	public ModelAndView findFilmById(String ID) {
+		ModelAndView mv = new ModelAndView();
+
+		mv.setViewName("WEB-INF/views/singleFilm.jsp");
+		try {
+			mv.addObject("film", filmDAO.findFilmById(Integer.parseInt(ID)));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return mv;
+	}
+
+	@RequestMapping(path = { "GetActors.do" }, params = "ID", method = RequestMethod.GET)
+	public ModelAndView findActorById(int ID) {
+		ModelAndView mv = new ModelAndView();
+
+		mv.setViewName("WEB-INF/views/singleFilm.jsp");
+		try {
+			mv.addObject("actors", filmDAO.findActorById(ID));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return mv;
+	}
+
+	@RequestMapping(path = { "GetActors.do" }, params = "filmId", method = RequestMethod.GET)
+	public ModelAndView findActorsByFilmId(int filmId) {
+		ModelAndView mv = new ModelAndView();
+
+		mv.setViewName("WEB-INF/views/singleFilm.jsp");
+		try {
+			mv.addObject("actors", filmDAO.findActorById(filmId));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return mv;
+	}
+
+	@RequestMapping(path = "GetFilm.do", params = "keyword", method = RequestMethod.GET)
+	public ModelAndView findFilmByKeyword(String keyword) {
+		ModelAndView mv = new ModelAndView();
+
+		mv.setViewName("WEB-INF/views/results.jsp");
+		try {
+			mv.addObject("film", filmDAO.findFilmByKeyword("%" + keyword + "%"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return mv;
+	}
+
 }
