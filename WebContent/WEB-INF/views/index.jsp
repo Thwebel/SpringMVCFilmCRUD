@@ -24,12 +24,20 @@
 		<input type="submit" value="Add Film" />
 	</form>
 
+
 	<h3>Look up film by keyword</h3>
 	<form action="GetFilm.do" method="GET">
 		<input type="text" name="keyword" value="" size="4" /> <input
 			type="submit" value="Search" />
 	</form>
 
+
+	<h3>Edit a Film in the DataBase</h3>
+	
+	<form action="EditFilm.do" method="GET">
+		<input type="text" name="ID" value="" size="4" /> <input
+			type="submit" value="Search" />
+	</form>
 
 	<!-- <h3>See All Films</h3>
 
