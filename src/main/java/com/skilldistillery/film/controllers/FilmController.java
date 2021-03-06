@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.film.dao.FilmDAO;
+import com.skilldistillery.film.entities.Film;
 
 @Controller
 public class FilmController {
@@ -78,11 +80,34 @@ public class FilmController {
 
 		return mv;
 	}
+	
 	@RequestMapping(path="GetForm.do")
 	public String getForm() {
 		return "WEB-INF/views/createFilmForm.jsp";
 	}
+	
+	@RequestMapping(path="MakeFilm.do",
+			method = RequestMethod.POST)
+	public ModelAndView newFilm(Film film, RedirectAttributes redir) {
+		ModelAndView mv = new ModelAndView();
+		
+		filmDAO.createFilm(film);
+		
+		redir.addFlashAttribute("film", film);
+		mv.setViewName("redirect:filmCreated.do");
+		
+		return mv;
+	}
 
+	@RequestMapping(path = "filmCreated.do", 
+			method = RequestMethod.GET)
+	public ModelAndView filmCreated() {
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("WEB-INF/views/singleFilm.jsp");
+		
+		return mv;
+	}
 }
 
 
