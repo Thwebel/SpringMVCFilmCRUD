@@ -156,54 +156,57 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 
 	@Override
 	public Film createFilm(Film film) {
-
 		String user = "student";
 		String pass = "student";
+		String sqlInsert = "INSERT INTO film " + "(title, description, release_year, language_id, rental_duration, "
+				+ "rental_rate, length, replacement_cost, rating, special_features) " + "VALUES (?,?,?,?,?,?,?,?,?,?)";
+		try (Connection conn = DriverManager.getConnection(URL, user, pass);) {
 
-		Connection conn = null;
+			conn.setAutoCommit(false);
 
-		try {
-			conn = DriverManager.getConnection(URL, user, pass);
-			conn.setAutoCommit(false); // START TRANSACTION
-			String sql = "INSERT INTO film (film.title,film.description, film.release_year, film.rating,"
-					+ "film.language_id) " + " VALUES (?,?,?,?,?)";
+			try (PreparedStatement stmt = conn.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);) {
 
-			PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			stmt.setString(1, film.getTitle());
-			stmt.setString(2, film.getDescription());
-			stmt.setString(3, film.getReleaseYear());
-			stmt.setString(4, film.getRating());
-			stmt.setInt(5, film.getLanguageId());
+				stmt.setString(1, film.getTitle());
+				stmt.setString(2, film.getDescription());
+				stmt.setString(3, film.getReleaseYear());
+				stmt.setInt(4, 1);
+				stmt.setInt(5, film.getRentalDuration());
+				stmt.setDouble(6, film.getRentalRate());
+				stmt.setInt(7, film.getLength());
+				stmt.setDouble(8, film.getReplacementCost());
+				stmt.setString(9, film.getRating());
+				stmt.setString(10, film.getSpecialFeatures());
 
-			int updateCount = stmt.executeUpdate();
-			System.out.println(updateCount + " film record created.");
+				int updateCount = stmt.executeUpdate();
+				if (updateCount == 1) {
 
-			if (updateCount == 1) {
-				ResultSet keys = stmt.getGeneratedKeys();
-				while (keys.next()) {
-					int filmId = keys.getInt(1);
-					film.setId(filmId);
+					ResultSet keys = stmt.getGeneratedKeys();
+					if (keys.next()) {
+						// set New Film's ID
+						film.setId(keys.getInt(1));
+					}
+
+				} else {
+					film = null;
 				}
-				// If we made it this far, no exception occurred.
-				conn.commit(); // Commit the transaction
 
-			} else {
-				film = null;
-			}
-			conn.commit(); // COMMIT TRANSACTION
-		} catch (SQLException sqle) {
-			sqle.printStackTrace();
-			if (conn != null) {
-				try {
-					conn.rollback();
-				} catch (SQLException sqle2) {
-					System.err.println("Error trying to rollback");
+				conn.commit();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+				if (conn != null) {
+					try {
+						conn.rollback();
+					} catch (SQLException sqle2) {
+						System.err.println("Error trying to rollback");
+					}
 				}
+
 			}
-			throw new RuntimeException("Error inserting actor " + film);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return film;
-
 	}
 
 	@Override
