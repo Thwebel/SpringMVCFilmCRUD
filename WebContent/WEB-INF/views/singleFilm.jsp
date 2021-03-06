@@ -83,7 +83,7 @@
 					</table>
 				</c:otherwise>
 			</c:choose>
-           
+           <br>
             <c:choose>
 
 				<c:when test="${empty category}">
