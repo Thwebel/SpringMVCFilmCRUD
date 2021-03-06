@@ -124,38 +124,6 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 	}
 
 	@Override
-	public List<Film> findFilmByKeyword(String keyword) throws SQLException {
-		Film film = new Film();
-		List<Film> flist = new ArrayList<>();
-
-		String user = "student";
-		String pass = "student";
-
-		Connection conn = DriverManager.getConnection(URL, user, pass);
-
-		String sql = "SELECT film.id, film.title, film.release_year, film.rating,"
-				+ "film.description , language.name FROM film JOIN language ON film.language_id = language.id "
-				+ "WHERE film.title LIKE ? OR film.description LIKE ?";
-		PreparedStatement stmt = conn.prepareStatement(sql);
-		stmt.setString(1, keyword);
-		stmt.setString(2, keyword);
-		ResultSet rs = stmt.executeQuery();
-		while (rs.next()) {
-			film = new Film(rs.getInt("id"), rs.getString("title"), rs.getString("description"),
-					rs.getString("release_year"), rs.getString("rating"), rs.getString("language.name"));
-			film.setActors(findActorsByFilmId(rs.getInt("film.id")));
-			flist.add(film);
-		}
-
-		rs.close();
-		stmt.close();
-		conn.close();
-
-		return flist;
-
-	}
-
-	@Override
 	public Film createFilm(Film film) {
 		String user = "student";
 		String pass = "student";
@@ -288,13 +256,55 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 		return true;
 
 	}
-	
-	
+
+	@Override
+	public List<Film> findFilmByKeyword(String searchText) {
+
+		List<Film> filmResults = new ArrayList<>();
+
+		String user = "student";
+		String pass = "student";
+
+		String[] keyWords = searchText.split(" ");
+
+		String sqlQuery = "SELECT * FROM film " + "JOIN language ON film.language_id = language.id "
+				+ "JOIN film_category ON film.id = film_category.film_id "
+				+ "JOIN category ON film_category.category_id = category.id "
+				+ "WHERE title LIKE ? OR description LIKE ? ";
+		if (keyWords.length > 1) {
+			for (int i = 0; i < (keyWords.length - 1); i++) {
+				sqlQuery += "OR title LIKE ? OR description LIKE ?";
+			}
+		}
+		try (Connection conn = DriverManager.getConnection(URL, user, pass);
+				PreparedStatement stmt = conn.prepareStatement(sqlQuery);) {
+			int bindPosition = 1;
+			for (String searchWord : keyWords) {
+				stmt.setString(bindPosition, ("%" + searchWord + "%"));
+				bindPosition++;
+				stmt.setString(bindPosition, ("%" + searchWord + "%"));
+				bindPosition++;
+			}
+//			To Check Compiled Statement
+//			System.out.println(stmt);
+			try (ResultSet fR = stmt.executeQuery();) {
+				while (fR.next()) {
+					Film film = new Film(fR.getInt("id"), fR.getString("title"), fR.getString("description"),
+							fR.getString("release_year"), fR.getString("rating"), fR.getString("language.name"));
+					film.setActors(findActorsByFilmId(fR.getInt("film.id")));
+					filmResults.add(film);
+				}
+			}
+		} catch (SQLException e) {
+			System.err.println(e);
+		}
+		return filmResults;
+	}
+
 	@Override
 	public Category findCategoriesByFilmId(int filmId) {
-        
-		Category category = null;
 
+		Category category = null;
 
 		String user = "student";
 		String pass = "student";
@@ -304,15 +314,15 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 
 			String sql = "SELECT film.id, category.name , category.id FROM film JOIN film_category ON film.id = film_category.film_id\n"
 					+ "JOIN category ON film_category.category_id = category.id WHERE film_id = ?";
-			
+
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, filmId);
-			
+
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
 				category = (new Category(rs.getInt("id"), rs.getString("category.name")));
 			}
-			
+
 			rs.close();
 			stmt.close();
 			conn.close();
@@ -321,11 +331,6 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 		}
 		return category;
 
-	
 	}
-	
-	
-
-	
 
 }
