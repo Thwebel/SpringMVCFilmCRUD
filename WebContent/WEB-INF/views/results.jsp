@@ -11,23 +11,18 @@
 <body>
 
 	<c:choose>
-
 		<c:when test="${empty films}">
 			<h3>No films were found</h3>
 		</c:when>
 
 		<c:otherwise>
 			<table>
-				<c:forEach var="st" items="${films}">
-
+				<c:forEach var="films" items="${films}">
 
 					<tr>
 
-
-
-						<td><a href="GetActors.do?filmId=${films.id}">
-								${films.id}</a></td>
-
+						<td><a href="GetFilm.do?ID=${films.id}">${films.id}
+								${films.title}</a></td>
 
 					</tr>
 
@@ -35,7 +30,6 @@
 
 			</table>
 		</c:otherwise>
-
 	</c:choose>
 
 
