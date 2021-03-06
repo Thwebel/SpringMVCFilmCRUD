@@ -108,6 +108,31 @@ public class FilmController {
 		
 		return mv;
 	}
+	
+	
+	@RequestMapping(path = "DeleteFilm.do",  params = "ID",
+			method = RequestMethod.GET)
+	public ModelAndView deleteFilm(String ID) {
+		
+		Film film = null;
+		try {
+			film = filmDAO.findFilmById(Integer.parseInt(ID));
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("WEB-INF/views/singleFilm.jsp");
+		mv.addObject("deleted", filmDAO.deleteFilm(film));
+		mv.addObject("film", film);
+		
+		return mv;
+	}
+	
+	
 }
 
 
