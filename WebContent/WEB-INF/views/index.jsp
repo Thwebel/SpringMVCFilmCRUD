@@ -20,9 +20,7 @@
 
 	<h3>Add a Film to the DataBase</h3>
 	
-	<form action="https://google.com">
-		<input type="submit" value="Add Film" />
-	</form>
+	<a href="/WEB-INF/view/createFilmForm.jsp">Click Here</a>
 	
 	<!-- <h3>See All Films</h3>
 	

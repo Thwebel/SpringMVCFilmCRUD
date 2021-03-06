@@ -18,7 +18,7 @@ public class Film {
 	private String specialFeatures;
 	private String language;
 	private List<Actor> actors;
-	private List<Film> films;
+	private List<Film> films; 
 	
 	public Film() {}
 	
