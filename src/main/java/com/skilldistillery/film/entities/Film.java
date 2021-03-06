@@ -23,25 +23,25 @@ public class Film {
 	
 	public Film() {}
 	
-	public Film(int id, String title, String description, String releaseYear, int languageId, int rentalDuration,
-			double rentalRate, Integer length, double replacementCost, String rating, String specialFeatures) {
+	
+	
+	
+public Film(int id, String title, String description, String releaseYear, int rentalDuration, double rentalRate,
+			Integer length, double replacementCost, String rating, String specialFeatures, String language) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.releaseYear = releaseYear;
-		this.languageId = languageId;
 		this.rentalDuration = rentalDuration;
 		this.rentalRate = rentalRate;
 		this.length = length;
 		this.replacementCost = replacementCost;
 		this.rating = rating;
 		this.specialFeatures = specialFeatures;
-		
+		this.language = language;
 	}
-	
-	
-	
+
 	public Film(int id, String title, String description, String releaseYear, String rating, String language ) {
 		super();
 		this.id = id;

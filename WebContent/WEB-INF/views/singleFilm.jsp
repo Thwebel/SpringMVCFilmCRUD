@@ -25,6 +25,12 @@
 						<th>Title</th>
 						<th>Description</th>
 						<th>Release Year</th>
+						<th>Language</th>
+						<th>Rental Duration</th>
+						<th>Rental Rate</th>
+						<th>Length</th>
+						<th>Rating</th>
+						<th>Special Features</th>
 
 					</tr>
 				</thead>
@@ -36,6 +42,12 @@
 						<td>${film.title}</td>
 						<td>${film.description}</td>
 						<td>${film.releaseYear}</td>
+						<td>${film.language}</td>
+						<td>${film.rentalDuration}</td>
+						<td>${film.rentalRate}</td>
+						<td>${film.length}</td>
+						<td>${film.rating}</td>
+						<td>${film.specialFeatures}</td>
 
 
 					</tr>

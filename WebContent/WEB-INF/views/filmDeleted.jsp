@@ -19,9 +19,6 @@
    <h3>Film ${film.title} was successfully deleted</h3>
    </c:otherwise>
 
-
-
-
 </c:choose>
 
 </body>
