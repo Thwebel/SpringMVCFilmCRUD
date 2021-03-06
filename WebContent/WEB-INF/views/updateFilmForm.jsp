@@ -108,17 +108,64 @@
 		<div class="form-group">
 		<!-- check box -->
 		  <h5><strong>Special Features</strong></h5><br>
-		  <input type="checkbox" id="Commentaries" name="specialFeatures" value="Commentaries">
-		  <label for="Commentaries">Commentaries</label><br>
-		
-		  <input type="checkbox" id="DeletedScenes" name="specialFeatures" value="Deleted Scenes">
-		  <label for="DeletedScenes"> Deleted Scenes</label><br>
+		  <c:choose>
 		  
-		  <input type="checkbox" id="BehindScenes" name="specialFeatures" value="Behind the Scenes">
-		  <label for="BehindScenes">Behind the Scenes</label>
+		  <c:when test="${film.specialFeatures.contains(\"Commentaries\")}">
 		  
-		  <input type="checkbox" id="Trailers" name="specialFeatures" value="Trailers">
-		  <label for="Trailers">Trailers</label>
+		 	 <input type="checkbox" id="Commentaries" name="specialFeatures" value="Commentaries" checked>
+		 	 <label for="Commentaries">Commentaries</label><br>
+		  </c:when>
+		  <c:otherwise>
+		  
+		 	 <input type="checkbox" id="Commentaries" name="specialFeatures" value="Commentaries" >
+		 	 <label for="Commentaries">Commentaries</label><br>
+		  
+		  </c:otherwise>
+		</c:choose>
+		<c:choose>
+		  
+		 	 <c:when test="${film.specialFeatures.contains(\"Deleted Scenes\")}">
+		  
+		 	  	<input type="checkbox" id="DeletedScenes" name="specialFeatures" value="Deleted Scenes" checked>
+		 		<label for="DeletedScenes"> Deleted Scenes</label><br>
+		 		
+			  </c:when>
+			  <c:otherwise>
+		  
+		 	 	<input type="checkbox" id="DeletedScenes" name="specialFeatures" value="Deleted Scenes">
+		  		<label for="DeletedScenes"> Deleted Scenes</label><br>
+		  
+		 	 </c:otherwise>
+		</c:choose>
+		<c:choose>
+		  
+		 	 <c:when test="${film.specialFeatures.contains(\"Behind the Scenes\")}">
+		  
+		 	 	<input type="checkbox" id="BehindScenes" name="specialFeatures" value="Behind the Scenes" checked>
+		  		<label for="BehindScenes">Behind the Scenes</label>
+		  		
+		  	</c:when>
+		 	<c:otherwise>
+		  
+		 		<input type="checkbox" id="BehindScenes" name="specialFeatures" value="Behind the Scenes">
+		  		<label for="BehindScenes">Behind the Scenes</label>
+		  
+		 	</c:otherwise>
+		</c:choose>
+		  <c:choose>
+		  
+		  <c:when test="${film.specialFeatures.contains(\"Trailers\")}">
+		  
+		 	 	<input type="checkbox" id="Trailers" name="specialFeatures" value="Trailers" checked>
+		  		<label for="Trailers">Trailers</label>
+		  </c:when>
+		  <c:otherwise>
+		  
+		 		<input type="checkbox" id="Trailers" name="specialFeatures" value="Trailers">
+		  		<label for="Trailers">Trailers</label>
+		  
+		  </c:otherwise>
+		</c:choose>
 		  
 		</div>
 		
