@@ -29,6 +29,7 @@ public class FilmController {
 		try {
 			mv.addObject("film", filmDAO.findFilmById(Integer.parseInt(ID)));
 			mv.addObject("actors", filmDAO.findActorsByFilmId(Integer.parseInt(ID)));
+			mv.addObject("category",filmDAO.findCategoriesByFilmId(Integer.parseInt(ID)));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

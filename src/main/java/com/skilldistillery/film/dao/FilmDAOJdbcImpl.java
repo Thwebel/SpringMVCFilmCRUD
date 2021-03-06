@@ -12,6 +12,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.skilldistillery.film.entities.Actor;
+import com.skilldistillery.film.entities.Category;
 import com.skilldistillery.film.entities.Film;
 
 @Component
@@ -283,5 +284,44 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 		return true;
 
 	}
+	
+	
+	@Override
+	public Category findCategoriesByFilmId(int filmId) {
+        
+		Category category = null;
+
+
+		String user = "student";
+		String pass = "student";
+
+		try {
+			Connection conn = DriverManager.getConnection(URL, user, pass);
+
+			String sql = "SELECT film.id, category.name , category.id FROM film JOIN film_category ON film.id = film_category.film_id\n"
+					+ "JOIN category ON film_category.category_id = category.id WHERE film_id = ?";
+			
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, filmId);
+			
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				category = (new Category(rs.getInt("id"), rs.getString("category.name")));
+			}
+			
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return category;
+
+	
+	}
+	
+	
+
+	
 
 }
