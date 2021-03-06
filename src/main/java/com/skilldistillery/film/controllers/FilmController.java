@@ -38,20 +38,47 @@ public class FilmController {
 
 		return mv;
 	}
-
-	@RequestMapping(path = { "GetActors.do" }, params = "ID", method = RequestMethod.GET)
-	public ModelAndView findActorById(int ID) {
+	
+	@RequestMapping(path = "EditFilm.do", params = "ID", method = RequestMethod.GET)
+	public ModelAndView getUpdateForm(int ID) {
 		ModelAndView mv = new ModelAndView();
-
-		mv.setViewName("WEB-INF/views/singleFilm.jsp");
+		
+		mv.setViewName("WEB-INF/views/updateFilmForm.jsp");
 		try {
-			mv.addObject("actors", filmDAO.findActorById(ID));
+			mv.addObject("film", filmDAO.findFilmById(ID));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		
 		return mv;
 	}
+	
+	@RequestMapping(path="UpdateFilm.do",
+			method = RequestMethod.POST)
+	public ModelAndView updateFilm(Film film, RedirectAttributes redir) {
+		ModelAndView mv = new ModelAndView();
+		
+		filmDAO.updateFilm(film);
+		
+		redir.addFlashAttribute("film", film);
+		mv.setViewName("redirect:filmCreated.do");
+		
+		return mv;
+	}
+
+//	@RequestMapping(path = { "GetActors.do" }, params = "ID", method = RequestMethod.GET)
+//	public ModelAndView findActorById(int ID) {
+//		ModelAndView mv = new ModelAndView();
+//
+//		mv.setViewName("WEB-INF/views/singleFilm.jsp");
+//		try {
+//			mv.addObject("actors", filmDAO.findActorById(ID));
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//
+//		return mv;
+//	}
 
 //	@RequestMapping(path = { "GetFilm.do" }, params = "filmId", method = RequestMethod.GET)
 //	public ModelAndView findActorsByFilmId(int filmId) {
@@ -73,7 +100,7 @@ public class FilmController {
 
 		mv.setViewName("WEB-INF/views/results.jsp");
 		try {
-			mv.addObject("films", filmDAO.findFilmByKeyword("%" + keyword + "%"));
+			mv.addObject("films", filmDAO.findFilmByKeyword(keyword));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -108,6 +135,31 @@ public class FilmController {
 		
 		return mv;
 	}
+	
+	
+	@RequestMapping(path = "DeleteFilm.do",  params = "ID",
+			method = RequestMethod.GET)
+	public ModelAndView deleteFilm(String ID) {
+		
+		Film film = null;
+		try {
+			film = filmDAO.findFilmById(Integer.parseInt(ID));
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("WEB-INF/views/singleFilm.jsp");
+		mv.addObject("deleted", filmDAO.deleteFilm(film));
+		mv.addObject("film", film);
+		
+		return mv;
+	}
+	
+	
 }
 
 
