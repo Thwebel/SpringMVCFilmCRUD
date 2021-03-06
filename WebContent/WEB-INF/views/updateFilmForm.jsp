@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,7 +47,8 @@
 		<div class="form-group">
 		<!-- drop down -->
 		<label for="releaseYear">Release Year</label>
-		<input type="Number" name="releaseYear" value="${film.releaseYear}" min="1920" max="2021" size="6" placeholder="Year" required/> 
+		<fmt:parseNumber var = "year" type = "number" value = "${film.releaseYear}" />
+		<input type="Number" name="releaseYear" value="${year}" min="1920" max="2021" size="6" placeholder="Year" required/> 
 		</div>
 		
 		<div class="form-group">
@@ -65,25 +67,29 @@
 		<div class="form-group">
 		<!--time?  -->
 		<label for="rentalDuration">Rental Duration</label>
-		<input type="number" name="rentalDuration" value="${film.rentalDuration}" min="0" max="10" size="4" placeholder="Title" required/> 
+		<fmt:parseNumber var = "duration" type = "number" value = "${film.rentalDuration}" />
+		<input type="number" name="rentalDuration" value="${duration}" min="0" max="10" size="4" placeholder="Title" required/> 
 		</div>
 		
 		<div class="form-group">
 		<!-- drop down rates -->
 		<label for="rentalRate">Rental Rate</label>
-		<input type="number" name="rentalRate" value="${film.rentalRate}" min="0" max="100" step=0.01 placeholder="Price" required/> 
+		<fmt:parseNumber var = "rentRate" type = "number" value = "${film.rentalRate}" />
+		<input type="number" name="rentalRate" value="${rentRate}" min="0" max="100" step=0.01 placeholder="Price" required/> 
 		</div>
 		
 		<div class="form-group">
 		<!-- in min -->
 		<label for="length">Film Length in Minutes</label>
-		<input type="number" name="length" value="${film.length}" min="0" max="1000" placeholder="RunTime" required/> 
+		<fmt:parseNumber var = "length" type = "number" value = "${film.length}" />
+		<input type="number" name="length" value="${length}" min="0" max="1000" placeholder="RunTime" required/> 
 		</div>
 		
 		<div class="form-group">
 		<!-- replacement -->
 		<label for="replacementCost">Cost to Replace</label>
-		<input type="text" name="replacementCost" value="${film.replacementCost}" min="0" max="100" step=0.01 placeholder="Cost" size="4" required/> 
+		<fmt:parseNumber var = "cost" type = "number" value = "${film.replacementCost}" />
+		<input type="number" name="replacementCost" value="${cost}" min="0" max="100" step=0.01 placeholder="Cost" size="4" required/> 
 		</div>
 		
 		<div class="form-group">

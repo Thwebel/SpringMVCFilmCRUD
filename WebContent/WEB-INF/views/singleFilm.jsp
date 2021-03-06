@@ -107,6 +107,15 @@
 					</table>
 				</c:otherwise>
 			</c:choose>
+			
+			<form action="EditFilm.do" method="GET">
+				<input type="hidden" name="ID" value="${film.id}"/> 
+				<input type="submit" value="Update" />
+			</form>
+			<form action="DeleteFilm.do" method="GET">
+				<input type="hidden" name="ID" value="${film.id}"/> 
+				<input type="submit" value="Delete" onclick="return confirm('Are you sure? This CANNOT be undone.'); "/>
+			</form>
 
 
 		</c:otherwise>
