@@ -21,10 +21,13 @@
 
 					<tr>
 
-						<td><a href="GetFilm.do?ID=${films.id}">${films.id}
-								${films.title}</a></td>
-
+						<td><a href="GetFilm.do?ID=${films.id}">${films.id}	${films.title}</a></td>
+						
 					</tr>
+					<form action="EditFilm.do" method="GET">
+						<input type="text" name="ID" value="${films.id}" size="4" /> 
+						<input type="submit" value="Update" />
+					</form>
 
 				</c:forEach>
 
