@@ -26,7 +26,7 @@ public class FilmController {
 	@RequestMapping(path = "GetFilm.do", params = "ID", method = RequestMethod.GET)
 	public ModelAndView findFilmById(String ID) {
 		ModelAndView mv = new ModelAndView();
-
+		mv.addObject("idNum", Integer.valueOf(ID));
 		mv.setViewName("WEB-INF/views/singleFilm.jsp");
 		try {
 			mv.addObject("film", filmDAO.findFilmById(Integer.parseInt(ID)));
@@ -129,6 +129,7 @@ public class FilmController {
 	@RequestMapping(path = "filmCreated.do", 
 			method = RequestMethod.GET)
 	public ModelAndView filmCreated() {
+		
 		ModelAndView mv = new ModelAndView();
 		
 		mv.setViewName("WEB-INF/views/singleFilm.jsp");

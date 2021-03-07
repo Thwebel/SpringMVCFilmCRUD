@@ -14,7 +14,7 @@
 	<c:choose>
 
 		<c:when test="${empty film}">
-			<h3>No Film Was Found.</h3>
+			<h3>No Film Was Found With Id Number: ${idNum}.</h3>
 		</c:when>
 
 		<c:otherwise>
