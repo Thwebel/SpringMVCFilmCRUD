@@ -23,7 +23,7 @@
   </div>
 
   <ul>
-    <li><a href="index.html"><h2 class="customHome">Home</h2></a></li>
+    <li><a href="home.do"><h2 class="customHome">Home</h2></a></li>
   </ul>
 
 	<h3>Look up film by Id #</h3>
