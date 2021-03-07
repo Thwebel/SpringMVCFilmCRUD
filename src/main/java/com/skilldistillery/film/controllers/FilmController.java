@@ -20,14 +20,14 @@ public class FilmController {
 
 	@RequestMapping(path = { "/", "home.do" })
 	public String home() {
-		return "WEB-INF/views/index.jsp";
+		return "index";
 	}
 
 	@RequestMapping(path = "GetFilm.do", params = "ID", method = RequestMethod.GET)
 	public ModelAndView findFilmById(String ID) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("idNum", Integer.valueOf(ID));
-		mv.setViewName("WEB-INF/views/singleFilm.jsp");
+		mv.setViewName("singleFilm");
 		try {
 			mv.addObject("film", filmDAO.findFilmById(Integer.parseInt(ID)));
 			mv.addObject("actors", filmDAO.findActorsByFilmId(Integer.parseInt(ID)));
@@ -48,7 +48,7 @@ public class FilmController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		mv.setViewName("WEB-INF/views/updateFilmForm.jsp");
+		mv.setViewName("updateFilmForm");
 		
 		return mv;
 	}
@@ -98,7 +98,7 @@ public class FilmController {
 	public ModelAndView findFilmByKeyword(String keyword) {
 		ModelAndView mv = new ModelAndView();
 
-		mv.setViewName("WEB-INF/views/results.jsp");
+		mv.setViewName("results");
 		try {
 			mv.addObject("films", filmDAO.findFilmByKeyword(keyword));
 		} catch (SQLException e) {
@@ -110,7 +110,7 @@ public class FilmController {
 	
 	@RequestMapping(path="GetForm.do")
 	public String getForm() {
-		return "WEB-INF/views/createFilmForm.jsp";
+		return "createFilmForm";
 	}
 	
 	@RequestMapping(path="MakeFilm.do",
@@ -132,7 +132,7 @@ public class FilmController {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		mv.setViewName("WEB-INF/views/singleFilm.jsp");
+		mv.setViewName("singleFilm");
 		
 		return mv;
 	}
@@ -153,7 +153,7 @@ public class FilmController {
 
 		ModelAndView mv = new ModelAndView();
 		
-		mv.setViewName("WEB-INF/views/filmDeleted.jsp");
+		mv.setViewName("filmDeleted");
 		mv.addObject("deleted", filmDAO.deleteFilm(film));
 		mv.addObject("film", film);
 		
