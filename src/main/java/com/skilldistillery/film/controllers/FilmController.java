@@ -59,6 +59,7 @@ public class FilmController {
 		ModelAndView mv = new ModelAndView();
 		
 		filmDAO.updateFilm(film);
+		setLanguageFromId(film);
 		
 		redir.addFlashAttribute("film", film);
 		mv.setViewName("redirect:filmCreated.do");
@@ -119,6 +120,7 @@ public class FilmController {
 		ModelAndView mv = new ModelAndView();
 		
 		filmDAO.createFilm(film);
+		setLanguageFromId(film);
 		
 		redir.addFlashAttribute("film", film);
 		mv.setViewName("redirect:filmCreated.do");
@@ -160,6 +162,33 @@ public class FilmController {
 		return mv;
 	}
 	
+	public void setLanguageFromId(Film film) {
+		
+		switch(film.getLanguageId()) {
+		case 1:
+			film.setLanguage("English");
+			break;
+		case 2:
+			film.setLanguage("Italian");
+			break;
+		case 3:
+			film.setLanguage("Japanese");
+			break;
+		case 4:
+			film.setLanguage("Mandarin");
+			break;
+		case 5:
+			film.setLanguage("French");
+			break;
+		case 6:
+			film.setLanguage("German");
+			break;
+		default:
+			film.setLanguage("English");
+			break;
+		}
+		
+	}
 	
 }
 

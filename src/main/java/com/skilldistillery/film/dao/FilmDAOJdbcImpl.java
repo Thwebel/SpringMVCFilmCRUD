@@ -51,7 +51,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 					filmResult.getInt("film.rental_duration"), filmResult.getDouble("film.rental_rate"),
 					filmResult.getInt("film.length"), filmResult.getDouble("film.replacement_cost"),
 					filmResult.getString("film.rating"), filmResult.getString("film.special_features"),
-					filmResult.getNString("language.name")));
+					filmResult.getString("language.name")));
 
 		}
 
@@ -133,7 +133,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 				stmt.setString(1, film.getTitle());
 				stmt.setString(2, film.getDescription());
 				stmt.setString(3, film.getReleaseYear());
-				stmt.setInt(4, 1);
+				stmt.setInt(4, film.getLanguageId());
 				stmt.setInt(5, film.getRentalDuration());
 				stmt.setDouble(6, film.getRentalRate());
 				stmt.setInt(7, film.getLength());
