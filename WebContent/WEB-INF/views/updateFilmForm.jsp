@@ -43,19 +43,19 @@
 		<div class="form-group">
 		<!-- text -->
 		<label for="title">Title</label>
-		<input class="customInputText type="text" name="title" value="${film.title}" size="15" placeholder="Title" required/> 
+		<input class="customInputText" id="title" type="text" name="title" value="${film.title}" size="15" placeholder="Title" required/> 
 		</div>
 		<!-- large text -->
 		<div class="form-group">
 		<label for="inputDescription">Description</label>
-		<input class="customInputText type="text" name="description" value="${film.description}" size="50" placeholder="Description" required/> 
+		<input class="customInputText" id="inputDescription" type="text" name="description" value="${film.description}" size="50" placeholder="Description" required/> 
 		</div>
 		
 		<div class="form-group">
 		<!-- drop down -->
 		<label for="releaseYear">Release Year</label>
 		<fmt:parseNumber var = "year" type = "number" value = "${film.releaseYear}" />
-		<input type="Number" name="releaseYear" value="${year}" min="1920" max="2021" size="6" placeholder="Year" required/> 
+		<input type="Number" id="releaseYear" name="releaseYear" value="${year}" min="1920" max="2021" size="6" placeholder="Year" required/> 
 		</div>
 		
 		<div class="form-group">
@@ -120,28 +120,28 @@
 		<!--time?  -->
 		<label for="rentalDuration">Rental Duration in Days</label>
 		<fmt:parseNumber var = "duration" type = "number" value = "${film.rentalDuration}" />
-		<input type="number" name="rentalDuration" value="${duration}" min="0" max="10" size="4" placeholder="Title" required/> 
+		<input type="number" name="rentalDuration" id="rentalDuration" value="${duration}" min="0" max="10" size="4" placeholder="Title" required/> 
 		</div>
 		
 		<div class="form-group">
 		<!-- drop down rates -->
 		<label for="rentalRate">Rental Rate</label>
 		<fmt:parseNumber var = "rentRate" type = "number" value = "${film.rentalRate}" />
-		<input type="number" name="rentalRate" value="${rentRate}" min="0" max="100" step=0.01 placeholder="Price" required/> 
+		<input type="number" name="rentalRate" id="rentalRate" value="${rentRate}" min="0" max="100" step=0.01 placeholder="Price" required/> 
 		</div>
 		
 		<div class="form-group">
 		<!-- in min -->
 		<label for="length">Film Length in Minutes</label>
 		<fmt:parseNumber var = "length" type = "number" value = "${film.length}" />
-		<input type="number" name="length" value="${length}" min="0" max="1000" placeholder="RunTime" required/> 
+		<input type="number" name="length" id="length" value="${length}" min="0" max="1000" placeholder="RunTime" required/> 
 		</div>
 		
 		<div class="form-group">
 		<!-- replacement -->
 		<label for="replacementCost">Cost to Replace</label>
 		<fmt:parseNumber var = "cost" type = "number" value = "${film.replacementCost}" />
-		<input type="number" name="replacementCost" value="${cost}" min="0" max="100" step=0.01 placeholder="Cost" size="4" required/> 
+		<input type="number" name="replacementCost" id="replacementCost" value="${cost}" min="0" max="100" step=0.01 placeholder="Cost" size="4" required/> 
 		</div>
 		
 		<div class="form-group">

@@ -35,18 +35,18 @@
 		<div class="form-group">
 		<!-- text -->
 		<label for="title">Title</label>
-		<input class="customInputText" type="text" name="title" value="" size="15" placeholder="Title" required/> 
+		<input class="customInputText" id="title" type="text" name="title" value="" size="15" placeholder="Title" required/> 
 		</div>
 		<!-- large text -->
 		<div class="form-group">
 		<label for="inputDescription">Description</label>
-		<input class="customInputText type="text" name="description" value="" size="4" placeholder="Description" required/> 
+		<input class="customInputText" id="inputDescription" type="text" name="description" value="" size="4" placeholder="Description" required/> 
 		</div>
 		
 		<div class="form-group">
 		<!-- drop down -->
 		<label for="releaseYear">Release Year</label>
-		<input type="Number" name="releaseYear" min="1920" max="2021" size="6" placeholder="Year" required/> 
+		<input type="Number" name="releaseYear" id="releaseYear" min="1920" max="2021" size="6" placeholder="Year" required/> 
 		</div>
 		
 		<div class="form-group">
@@ -65,25 +65,25 @@
 		<div class="form-group">
 		<!--time?  -->
 		<label for="rentalDuration">Rental Duration in Days</label>
-		<input type="number" name="rentalDuration" min="0" max="10" size="4" placeholder="Title" required/> 
+		<input type="number" name="rentalDuration" id="rentalDuration" min="0" max="10" size="4" placeholder="Title" required/> 
 		</div>
 		
 		<div class="form-group">
 		<!-- drop down rates -->
 		<label for="rentalRate">Rental Rate</label>
-		<input type="number" name="rentalRate" min="0" max="100" step=0.01 placeholder="Price" required/> 
+		<input type="number" name="rentalRate" id="rentalRate" min="0" max="100" step=0.01 placeholder="Price" required/> 
 		</div>
 		
 		<div class="form-group">
 		<!-- in min -->
 		<label for="length">Film Length in Minutes</label>
-		<input type="number" name="length" min="0" max="1000" placeholder="RunTime" required/> 
+		<input type="number" name="length" id="length" min="0" max="1000" placeholder="RunTime" required/> 
 		</div>
 		
 		<div class="form-group">
 		<!-- replacement -->
 		<label for="replacementCost">Cost to Replace</label>
-		<input type="text" name="replacementCost" min="0" max="100" step=0.01 placeholder="Cost" size="4" required/> 
+		<input type="text" name="replacementCost" id="replacementCost" min="0" max="100" step=0.01 placeholder="Cost" size="4" required/> 
 		</div>
 		
 		<div class="form-group">
