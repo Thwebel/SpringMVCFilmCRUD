@@ -62,18 +62,63 @@
 		<!-- drop down -->
 		<label for="languageId">Language</label>
 		<select name="languageId" id="languageId">
-			<option value=1>English</option>
-			<option value=2>Italian</option>
-			<option value=3>Japanese</option>
-			<option value=4>Mandarin</option>
-			<option value=5>French</option>
-			<option value=6>German</option>
+		
+		
+			<c:choose> 
+				<c:when test="${film.language.contains(\"English\")}">
+					<option value=1 selected>English</option>
+				</c:when>
+				<c:otherwise>
+					<option value=1>English</option>
+				</c:otherwise>
+			</c:choose>
+			<c:choose> 
+				<c:when test="${film.language.contains(\"Italian\")}">
+					<option value=2 selected>Italian</option>
+				</c:when>
+				<c:otherwise>
+					<option value=2>Italian</option>
+				</c:otherwise>
+			</c:choose>
+			<c:choose> 
+				<c:when test="${film.language.contains(\"Japanese\")}">
+					<option value=3 selected>Japanese</option>
+				</c:when>
+				<c:otherwise>
+					<option value=3>Japanese</option>
+				</c:otherwise>
+			</c:choose>
+			<c:choose> 
+				<c:when test="${film.language.contains(\"Mandarin\")}">
+					<option value=4 selected>Mandarin</option>
+				</c:when>
+				<c:otherwise>
+					<option value=4>Mandarin</option>
+				</c:otherwise>
+			</c:choose>
+			<c:choose> 
+				<c:when test="${film.language.contains(\"French\")}">
+					<option value=5 selected>French</option>
+				</c:when>
+				<c:otherwise>
+					<option value=5>French</option>
+				</c:otherwise>
+			</c:choose>
+			<c:choose> 
+				<c:when test="${film.language.contains(\"German\")}">
+					<option value=6 selected>German</option>
+				</c:when>
+				<c:otherwise>
+					<option value=6>German</option>
+				</c:otherwise>
+			</c:choose>
 		</select>
+		
 		</div>
 		
 		<div class="form-group">
 		<!--time?  -->
-		<label for="rentalDuration">Rental Duration</label>
+		<label for="rentalDuration">Rental Duration in Days</label>
 		<fmt:parseNumber var = "duration" type = "number" value = "${film.rentalDuration}" />
 		<input type="number" name="rentalDuration" value="${duration}" min="0" max="10" size="4" placeholder="Title" required/> 
 		</div>
@@ -104,12 +149,53 @@
 		
 		<label for="rating">Rating</label>
 		<select name="rating" id="rating">
-			<option value="G">G</option>
-			<option value="PG">PG</option>
-			<option value="PG13">PG-13</option>
-			<option value="R">R</option>
-			<option value="NC17">NC-17</option>
+			<c:choose> 
+				<c:when test="${film.rating.contains(\"G\")}">
+					<option value="G" selected>G</option>
+				</c:when>
+				<c:otherwise>
+					<option value="G">G</option>
+				</c:otherwise>
+			</c:choose>
+			
+			<c:choose> 
+				<c:when test="${film.rating.contains(\"PG\")}">
+					<option value="PG" selected>PG</option>
+				</c:when>
+				<c:otherwise>
+					<option value="PG">PG</option>
+				</c:otherwise>
+			</c:choose>
+			
+			<c:choose> 
+				<c:when test="${film.rating.contains(\"PG13\")}">
+					<option value="PG13" selected>PG-13</option>
+				</c:when>
+				<c:otherwise>
+					<option value="PG13">PG-13</option>
+				</c:otherwise>
+			</c:choose>
+			
+			<c:choose> 
+				<c:when test="${film.rating.contains(\"R\")}">
+					<option value="R" selected>R</option>
+				</c:when>
+				<c:otherwise>
+					<option value="R">R</option>
+				</c:otherwise>
+			</c:choose>
+			
+			<c:choose> 
+				<c:when test="${film.rating.contains(\"NC17\")}">
+					<option value="NC17" selected>NC-17</option>
+				</c:when>
+				<c:otherwise>
+					<option value="NC17">NC-17</option>
+				</c:otherwise>
+			</c:choose>
+		
 		</select>
+		
 		</div>
 		
 		<div class="form-group">
@@ -176,7 +262,7 @@
 		  
 		</div>
 		
-		<button type="submit" class="btn btn-primary">Create</button>
+		<button type="submit" class="btn btn-primary">Update</button>
 			
 			
 			

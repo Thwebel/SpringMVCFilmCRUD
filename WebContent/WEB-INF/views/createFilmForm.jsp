@@ -64,7 +64,7 @@
 		
 		<div class="form-group">
 		<!--time?  -->
-		<label for="rentalDuration">Rental Duration</label>
+		<label for="rentalDuration">Rental Duration in Days</label>
 		<input type="number" name="rentalDuration" min="0" max="10" size="4" placeholder="Title" required/> 
 		</div>
 		
