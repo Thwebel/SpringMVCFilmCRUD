@@ -28,7 +28,7 @@
 
 	<h3>Look up film by Id #</h3>
 	<form action="GetFilm.do" method="GET">
-		<input class="customInputNumbers" type="text" name="ID" value="" size="4" />
+		<input class="customInputNumbers" type="number" name="ID" value="" size="4" required/>
     <br>
     <input type="submit" value="Search" />
 	</form>
