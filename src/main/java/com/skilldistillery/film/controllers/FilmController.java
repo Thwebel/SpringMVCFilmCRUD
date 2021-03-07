@@ -59,9 +59,12 @@ public class FilmController {
 		ModelAndView mv = new ModelAndView();
 		
 		filmDAO.updateFilm(film);
-		setLanguageFromId(film);
 		
+		setLanguageFromId(film);
 		redir.addFlashAttribute("film", film);
+		redir.addFlashAttribute("actors", filmDAO.findActorsByFilmId(film.getId()));
+		redir.addFlashAttribute("category",filmDAO.findCategoriesByFilmId(film.getId()));
+		
 		mv.setViewName("redirect:filmCreated.do");
 		
 		return mv;
