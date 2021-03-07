@@ -30,13 +30,13 @@
 					<tr>
 						<td>${films.id}</td>
 						<td><a href="GetFilm.do?ID=${films.id}">${films.title}</a></td>
-
+						<td>
+							<form action="EditFilm.do" method="GET">
+								<input type="hidden" name="ID" value="${films.id}" /> 
+								<input type="submit" value="Update" />
+							</form>
+						</td>
 					</tr>
-					<form action="EditFilm.do" method="GET">
-						<input type="text" name="ID" value="${films.id}" size="4" /> <input
-							type="submit" value="Update" />
-					</form>
-
 				</c:forEach>
 				</tbody>
 			</table>
