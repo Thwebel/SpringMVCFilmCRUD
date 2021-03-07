@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="resources/FilmQueryStyle.css" type="text/css">
-<title>${film.id}</title>
+<title>${film.title}</title>
 </head>
 <body>
 
@@ -53,6 +53,14 @@
 				<tbody>
 
 					<tr>
+						<td colspan="10">
+
+							<hr>
+
+						</td>
+					</tr>
+
+					<tr>
 
 						<td>${film.id}</td>
 						<td>${film.title}</td>
@@ -67,10 +75,19 @@
 
 
 					</tr>
+					
+					<tr>
+						<td colspan="10">
+
+							<hr>
+
+						</td>
+					</tr>
+
+					<tr>
 
 				</tbody>
 			</table>
-			<br>
 
 			<c:choose>
 
@@ -79,7 +96,7 @@
 				</c:when>
 
 				<c:otherwise>
-					<table>
+					<table class="center">
 						<thead>
 							<tr>
 								<th>Actors</th>
@@ -97,9 +114,9 @@
 							</c:forEach>
 						</tbody>
 					</table>
+					<hr>
 				</c:otherwise>
 			</c:choose>
-           <br>
             <c:choose>
 
 				<c:when test="${empty category}">
@@ -107,7 +124,7 @@
 				</c:when>
 
 				<c:otherwise>
-					<table>
+					<table class="center">
 						<thead>
 							<tr>
 								<th>Category</th>
@@ -121,6 +138,7 @@
 								</tr>
 						</tbody>
 					</table>
+					<hr>
 				</c:otherwise>
 			</c:choose>
 			

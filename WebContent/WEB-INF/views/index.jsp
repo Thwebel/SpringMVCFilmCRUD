@@ -8,7 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="resources/FilmQueryStyle.css" type="text/css">
-  <title>MVC Film Site</title>
+  <title>Film Query Home</title>
 </head>
 <body>
 
@@ -23,7 +23,7 @@
   </div>
 
   <ul>
-    <li><a href="index.html"><h2 class="customHome">Home</h2></a></li>
+    <li><a href="home.do"><h2 class="customHome">Home</h2></a></li>
   </ul>
 
 	<h3>Look up film by Id #</h3>

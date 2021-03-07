@@ -7,6 +7,7 @@ h3 {
   margin: 3px;
 }
 
+
 body {
   margin: 0;
   background-color: rgb(213, 213, 213);
@@ -20,7 +21,21 @@ body {
 .header{
   text-align: center;
   padding: 1px;
-  background: #e0e0d1;
+  background-color: #e0e0d1;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+th {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+td {
+  padding: 0px;
 }
 
 h1, h2 {
