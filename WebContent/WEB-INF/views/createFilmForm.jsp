@@ -1,35 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Required meta tags -->
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="resources/FilmQueryStyle.css" type="text/css">
 <title>Create A Film</title>
-<style>
-    .create-form{
-        margin: 50px;        
-    }
-</style>
+
 </head>
 
 <body>
+
+ <div class="header">
+
+    <h1>Film Query Application</h1>
+
+    <hr width="90%" color="#85adad">
+
+    <h2>[beta]</h2>
+
+  </div>
+
+  <ul>
+    <li><a href="home.do"><h2 class="customHome">Home</h2></a></li>
+  </ul>
+
 <div class="create-form">
-<h1>Enter Film Information Here!</h1>
+<h2>Enter Film Information Here!</h2>
 	<form action="MakeFilm.do" method="POST">
 	
 		<div class="form-group">
 		<!-- text -->
 		<label for="title">Title</label>
-		<input type="text" name="title" value="" size="15" placeholder="Title" required/> 
+		<input class="customInputText" type="text" name="title" value="" size="15" placeholder="Title" required/> 
 		</div>
 		<!-- large text -->
 		<div class="form-group">
 		<label for="inputDescription">Description</label>
-		<input type="text" name="description" value="" size="4" placeholder="Description" required/> 
+		<input class="customInputText type="text" name="description" value="" size="4" placeholder="Description" required/> 
 		</div>
 		
 		<div class="form-group">

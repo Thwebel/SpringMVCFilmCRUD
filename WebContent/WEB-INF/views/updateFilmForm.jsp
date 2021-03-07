@@ -10,19 +10,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="resources/FilmQueryStyle.css" type="text/css">
 <title>Update A Film</title>
-<style>
-    .create-form{
-        margin: 50px;        
-    }
-</style>
+
 </head>
 
 <body>
+
+<div class="header">
+
+    <h1>Film Query Application</h1>
+
+    <hr width="90%" color="#85adad">
+
+    <h2>[beta]</h2>
+
+  </div>
+
+  <ul>
+    <li><a href="home.do"><h2 class="customHome">Home</h2></a></li>
+  </ul>
+
 <div class="create-form">
 <c:choose>
 <c:when test="${film == null}"><h3>No Film Was Found With Id Number: ${idNum}.</h3></c:when>
 <c:otherwise>
-<h1>Enter Film Information Here!</h1>
+<h2>Enter Film Information Here!</h2>
 	<form action="UpdateFilm.do" method="POST">
 	
 		<div class="form-group">
@@ -32,12 +43,12 @@
 		<div class="form-group">
 		<!-- text -->
 		<label for="title">Title</label>
-		<input type="text" name="title" value="${film.title}" size="15" placeholder="Title" required/> 
+		<input class="customInputText type="text" name="title" value="${film.title}" size="15" placeholder="Title" required/> 
 		</div>
 		<!-- large text -->
 		<div class="form-group">
 		<label for="inputDescription">Description</label>
-		<input type="text" name="description" value="${film.description}" size="50" placeholder="Description" required/> 
+		<input class="customInputText type="text" name="description" value="${film.description}" size="50" placeholder="Description" required/> 
 		</div>
 		
 		<div class="form-group">

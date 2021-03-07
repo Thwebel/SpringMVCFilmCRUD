@@ -11,14 +11,26 @@
 <title>Films</title>
 </head>
 <body>
+<div class="header">
 
+    <h1>Film Query Application</h1>
+
+    <hr width="90%" color="#85adad">
+
+    <h2>[beta]</h2>
+
+  </div>
+
+  <ul>
+    <li><a href="home.do"><h2 class="customHome">Home</h2></a></li>
+  </ul>
 	<c:choose>
 		<c:when test="${empty films}">
 			<h3>No films were found</h3>
 		</c:when>
 
 		<c:otherwise>
-			<table>
+			<table class="center">
 				<thead>
 					<tr>
 						<th>ID</th>

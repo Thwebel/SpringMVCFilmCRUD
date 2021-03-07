@@ -13,6 +13,10 @@ body {
   background-color: rgb(213, 213, 213);
 }
 
+.create-form{
+        margin: 40px;        
+    }
+
 .customHome {
   margin-block-start: 0em;
   margin-block-end: 0em;

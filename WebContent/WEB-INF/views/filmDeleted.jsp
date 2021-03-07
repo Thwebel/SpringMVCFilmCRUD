@@ -11,7 +11,19 @@
 <title>Delete Film</title>
 </head>
 <body>
+<div class="header">
 
+    <h1>Film Query Application</h1>
+
+    <hr width="90%" color="#85adad">
+
+    <h2>[beta]</h2>
+
+  </div>
+
+  <ul>
+    <li><a href="home.do"><h2 class="customHome">Home</h2></a></li>
+  </ul>
 	<c:choose>
 
 		<c:when test="${not deleted}">
