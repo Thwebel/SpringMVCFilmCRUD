@@ -26,6 +26,9 @@
 
 <body>
 <div class="create-form">
+<c:choose>
+<c:when test="${film == null}"><h3>No Film Was Found With Id Number: ${idNum}.</h3></c:when>
+<c:otherwise>
 <h1>Enter Film Information Here!</h1>
 	<form action="UpdateFilm.do" method="POST">
 	
@@ -175,6 +178,8 @@
 			
 	</form>
 
+	</c:otherwise>
+	</c:choose> 
 	</div>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->

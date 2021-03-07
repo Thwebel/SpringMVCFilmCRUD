@@ -42,13 +42,13 @@ public class FilmController {
 	@RequestMapping(path = "EditFilm.do", params = "ID", method = RequestMethod.GET)
 	public ModelAndView getUpdateForm(int ID) {
 		ModelAndView mv = new ModelAndView();
-		
-		mv.setViewName("WEB-INF/views/updateFilmForm.jsp");
+		mv.addObject("idNum", Integer.valueOf(ID));
 		try {
 			mv.addObject("film", filmDAO.findFilmById(ID));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		mv.setViewName("WEB-INF/views/updateFilmForm.jsp");
 		
 		return mv;
 	}
