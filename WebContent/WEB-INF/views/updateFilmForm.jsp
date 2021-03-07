@@ -107,7 +107,7 @@
 		
 		<div class="form-group">
 		<!--time?  -->
-		<label for="rentalDuration">Rental Duration</label>
+		<label for="rentalDuration">Rental Duration in Days</label>
 		<fmt:parseNumber var = "duration" type = "number" value = "${film.rentalDuration}" />
 		<input type="number" name="rentalDuration" value="${duration}" min="0" max="10" size="4" placeholder="Title" required/> 
 		</div>
@@ -251,7 +251,7 @@
 		  
 		</div>
 		
-		<button type="submit" class="btn btn-primary">Create</button>
+		<button type="submit" class="btn btn-primary">Update</button>
 			
 			
 			
