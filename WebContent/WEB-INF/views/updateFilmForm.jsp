@@ -21,7 +21,7 @@
 
     <hr width="90%" color="#85adad">
 
-    <h2>[beta]</h2>
+    <h2>Edit Film</h2>
 
   </div>
 

@@ -18,13 +18,10 @@
 
     <hr width="90%" color="#85adad">
 
-    <h2>[beta]</h2>
+    <h2>Home</h2>
 
   </div>
 
-  <ul>
-    <li><a href="home.do"><h2 class="customHome">Home</h2></a></li>
-  </ul>
 
 	<h3>Look up film by Id #</h3>
 	<form action="GetFilm.do" method="GET">
