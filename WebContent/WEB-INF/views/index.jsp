@@ -23,7 +23,7 @@
   </div>
 
   <ul>
-    <li><br></li>
+    <li class="noHover"><br></li>
   </ul>
 
 	<h3>Look up film by Id #</h3>
