@@ -24,6 +24,6 @@ This project utilizes the Spring model-view-cotroller (MVC) framework to produce
   * Gradle Dependency management
 
 ### Collaborators
-#### Keren Mena
+#### Karen Mena
 #### Josh Rose
 #### Thomas Webel
