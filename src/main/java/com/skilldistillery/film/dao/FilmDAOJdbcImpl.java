@@ -97,7 +97,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 		String user = "student";
 		String pass = "student";
 
-		try {
+		try  {
 			Connection conn = DriverManager.getConnection(URL, user, pass);
 
 			String sql = "SELECT * FROM actor JOIN film_actor ON actor.id = film_actor.actor_id WHERE film_id = ?";
