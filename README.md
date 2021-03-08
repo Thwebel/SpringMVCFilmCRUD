@@ -2,13 +2,7 @@
 
 ## Overview
 
-This project utilizes the Spring model-view-cotroller (MVC) framework to produce
-a locally hosted web application. The application leverages Spring's DispatcherServlet to dispatch requests from the client to handlers with configured
-mappings. These controllers depend on an @autowired Database Access Object to
-interact with a local mysql server. The application is capable of creating, updating,
-and deleting films records in the database. This program also features a user
-friendly interface, which allows the user to easily choose how they want to interact
-with the database and what information to access, change, or delete.  
+This project utilizes the Spring model-view-cotroller (MVC) framework to produce a locally hosted web application. The application leverages Spring's DispatcherServlet to dispatch requests from the client to handlers with configured mappings. These controllers depend on an @autowired Database Access Object to interact with a local mysql server. The application is capable of creating, updating, and deleting films records in the database. This program also features a user friendly interface, which allows the user to easily choose how they want to interact with the database and what information to access, change, or delete.  
 
 ## Topics and Technologies
 1. Spring MVC framework
@@ -26,8 +20,8 @@ with the database and what information to access, change, or delete.
   * Expression Language
   * HTML
   * CSS
-3. Gradel
-  * Gradel Dependency management
+3. Gradle
+  * Gradle Dependency management
 
 ### Collaborators
 #### Keren Mena
