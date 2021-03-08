@@ -36,14 +36,17 @@
 						<th>ID</th>
 						<th>Title</th>
 					</tr>
-
+					
 				</thead>
-				<tbody></tbody>
+				
+				<tbody>
+
+				</tbody>
 				<c:forEach var="films" items="${films}">
 
 					<tr>
 						<td>${films.id}</td>
-						<td><a href="GetFilm.do?ID=${films.id}">${films.title}</a></td>
+						<td><a class="aBlack" href="GetFilm.do?ID=${films.id}"><h3>${films.title}</h3></a></td>
 						<td>
 							<form action="EditFilm.do" method="GET">
 								<input type="hidden" name="ID" value="${films.id}" /> 

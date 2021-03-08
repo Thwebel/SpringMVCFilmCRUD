@@ -198,9 +198,13 @@
 		
 		</div>
 		
+		<br>
+		<hr>
+		<br>
+		
 		<div class="form-group">
 		<!-- check box -->
-		  <h5><strong>Special Features</strong></h5><br>
+		  <h4><strong>Special Features</strong></h4>
 		  <c:choose>
 		  
 		  <c:when test="${film.specialFeatures.contains(\"Commentaries\")}">
@@ -262,7 +266,11 @@
 		  
 		</div>
 		
-		<button type="submit" class="btn btn-primary">Update</button>
+		<br>
+		<hr>
+		<br>
+		
+		<button type="submit" class="niceButton">Update</button>
 			
 			
 			

@@ -98,9 +98,13 @@
 		</select>
 		</div>
 		
+		<br>
+		<hr>
+		<br>
+		
 		<div class="form-group">
 		<!-- check box -->
-		  <h5><strong>Special Features</strong></h5><br>
+		  <h4><strong>Special Features</strong></h4>
 		  <input type="checkbox" id="Commentaries" name="specialFeatures" value="Commentaries">
 		  <label for="Commentaries">Commentaries</label><br>
 		
@@ -114,8 +118,11 @@
 		  <label for="Trailers">Trailers</label>
 		  
 		</div>
+		<br>
+		<hr>
+		<br>
 		
-		<button type="submit" class="btn btn-primary">Create</button>
+		<button type="submit" class="niceButton">Create</button>
 			
 			
 			
