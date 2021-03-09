@@ -28,13 +28,9 @@ public class FilmController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("idNum", Integer.valueOf(ID));
 		mv.setViewName("singleFilm");
-		try {
-			mv.addObject("film", filmDAO.findFilmById(Integer.parseInt(ID)));
-			mv.addObject("actors", filmDAO.findActorsByFilmId(Integer.parseInt(ID)));
-			mv.addObject("category",filmDAO.findCategoriesByFilmId(Integer.parseInt(ID)));
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
+		mv.addObject("film", filmDAO.findFilmById(Integer.parseInt(ID)));
+		
 
 		return mv;
 	}
@@ -43,11 +39,9 @@ public class FilmController {
 	public ModelAndView getUpdateForm(int ID) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("idNum", Integer.valueOf(ID));
-		try {
-			mv.addObject("film", filmDAO.findFilmById(ID));
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
+		mv.addObject("film", filmDAO.findFilmById(ID));
+		
 		mv.setViewName("updateFilmForm");
 		
 		return mv;
@@ -62,8 +56,6 @@ public class FilmController {
 		
 		setLanguageFromId(film);
 		redir.addFlashAttribute("film", film);
-		redir.addFlashAttribute("actors", filmDAO.findActorsByFilmId(film.getId()));
-		redir.addFlashAttribute("category",filmDAO.findCategoriesByFilmId(film.getId()));
 		
 		mv.setViewName("redirect:filmCreated.do");
 		
@@ -152,9 +144,7 @@ public class FilmController {
 			film = filmDAO.findFilmById(Integer.parseInt(ID));
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		} 
 
 		ModelAndView mv = new ModelAndView();
 		

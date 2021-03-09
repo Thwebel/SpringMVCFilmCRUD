@@ -2,7 +2,6 @@ package com.skilldistillery.film.entities;
 
 import java.util.List;
 
-
 public class Film {
 
 	private int id;
@@ -18,15 +17,33 @@ public class Film {
 	private String specialFeatures;
 	private String language;
 	private List<Actor> actors;
-	private List<Film> films; 
-	
-	
-	public Film() {}
-	
-	
-	
-	
-public Film(int id, String title, String description, String releaseYear, int rentalDuration, double rentalRate,
+	private String category;
+
+	public Film() {
+
+	}
+
+	public Film(int id, String title, String description, String releaseYear, int languageId, int rentalDuration,
+			double rentalRate, Integer length, double replacementCost, String rating, String specialFeatures,
+			String language, List<Actor> actors, String category) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.releaseYear = releaseYear;
+		this.languageId = languageId;
+		this.rentalDuration = rentalDuration;
+		this.rentalRate = rentalRate;
+		this.length = length;
+		this.replacementCost = replacementCost;
+		this.rating = rating;
+		this.specialFeatures = specialFeatures;
+		this.language = language;
+		this.actors = actors;
+		this.category = category;
+	}
+
+	public Film(int id, String title, String description, String releaseYear, int rentalDuration, double rentalRate,
 			Integer length, double replacementCost, String rating, String specialFeatures, String language) {
 		super();
 		this.id = id;
@@ -42,7 +59,7 @@ public Film(int id, String title, String description, String releaseYear, int re
 		this.language = language;
 	}
 
-	public Film(int id, String title, String description, String releaseYear, String rating, String language ) {
+	public Film(int id, String title, String description, String releaseYear, String rating, String language) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -55,71 +72,91 @@ public Film(int id, String title, String description, String releaseYear, int re
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public String getReleaseYear() {
 		return releaseYear;
 	}
+
 	public void setReleaseYear(String releaseYear) {
 		this.releaseYear = releaseYear;
 	}
+
 	public int getLanguageId() {
 		return languageId;
 	}
+
 	public void setLanguageId(int languageId) {
 		this.languageId = languageId;
 	}
+
 	public int getRentalDuration() {
 		return rentalDuration;
 	}
+
 	public void setRentalDuration(int rentalDuration) {
 		this.rentalDuration = rentalDuration;
 	}
+
 	public double getRentalRate() {
 		return rentalRate;
 	}
+
 	public void setRentalRate(double rentalRate) {
 		this.rentalRate = rentalRate;
 	}
+
 	public Integer getLength() {
 		return length;
 	}
+
 	public void setLength(Integer length) {
 		this.length = length;
 	}
+
 	public double getReplacementCost() {
 		return replacementCost;
 	}
+
 	public void setReplacementCost(double replacementCost) {
 		this.replacementCost = replacementCost;
 	}
+
 	public String getRating() {
 		return rating;
 	}
+
 	public void setRating(String rating) {
 		this.rating = rating;
 	}
+
 	public String getSpecialFeatures() {
 		return specialFeatures;
 	}
+
 	public void setSpecialFeatures(String specialFeatures) {
 		this.specialFeatures = specialFeatures;
 	}
 
-	
 	public List<Actor> getActors() {
 		return actors;
 	}
@@ -127,18 +164,6 @@ public Film(int id, String title, String description, String releaseYear, int re
 	public void setActors(List<Actor> actors) {
 		this.actors = actors;
 	}
-	
-	
-
-	public List<Film> getFilms() {
-		return films;
-	}
-
-	public void setFilms(List<Film> films) {
-		this.films = films;
-	}
-	
-	
 
 	public String getLanguage() {
 		return language;
@@ -146,6 +171,14 @@ public Film(int id, String title, String description, String releaseYear, int re
 
 	public void setLanguage(String language) {
 		this.language = language;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	@Override
@@ -223,24 +256,13 @@ public Film(int id, String title, String description, String releaseYear, int re
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Film [id: ");
-		builder.append(id);
-		builder.append(", title: ");
-		builder.append(title);
-		builder.append(", description: ");
-		builder.append(description);
-		builder.append(", releaseYear: ");
-		builder.append(releaseYear);
-		builder.append(", rating: ");
-		builder.append(rating);
-		builder.append(", language: ");
-		builder.append(language);
-		builder.append(" ]");
-		return builder.toString();
+		return "Film [id=" + id + ", title=" + title + ", description=" + description + ", releaseYear=" + releaseYear
+				+ ", languageId=" + languageId + ", rentalDuration=" + rentalDuration + ", rentalRate=" + rentalRate
+				+ ", length=" + length + ", replacementCost=" + replacementCost + ", rating=" + rating
+				+ ", specialFeatures=" + specialFeatures + ", language=" + language + ", actors=" + actors
+				+ ", category=" + category + "]";
 	}
 
 	
-	
-	
+
 }

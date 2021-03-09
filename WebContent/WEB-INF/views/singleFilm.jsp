@@ -91,7 +91,7 @@
 
 			<c:choose>
 
-				<c:when test="${empty actors}">
+				<c:when test="${empty film.actors}">
 					<h3>No actors were found</h3>
 				</c:when>
 
@@ -103,11 +103,11 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="actors" items="${actors}">
+							<c:forEach var="actor" items="${film.actors}">
 
 								<tr>
 
-									<td>${actors.id} ${actors.firstName} ${actors.lastName}</td>
+									<td>${actor.id} ${actor.firstName} ${actor.lastName}</td>
 
 								</tr>
 
@@ -119,7 +119,7 @@
 			</c:choose>
             <c:choose>
 
-				<c:when test="${empty category}">
+				<c:when test="${empty film.category}">
 					<h3>No categories were found</h3>
 				</c:when>
 
@@ -133,7 +133,7 @@
 						<tbody>
 								<tr>
 
-									<td>${category.name}</td>
+									<td>${film.category}</td>
 
 								</tr>
 						</tbody>

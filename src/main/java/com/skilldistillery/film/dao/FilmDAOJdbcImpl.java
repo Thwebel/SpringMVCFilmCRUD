@@ -19,6 +19,8 @@ import com.skilldistillery.film.entities.Film;
 public class FilmDAOJdbcImpl implements FilmDAO {
 
 	private static final String URL = "jdbc:mysql://localhost:3306/sdvid?useSSL=false";
+	private static final String USER = "student";
+	private static final String PASS = "student";
 
 	static {
 
@@ -31,74 +33,84 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 	}
 
 	@Override
-	public Film findFilmById(int filmId) throws SQLException {
+	public Film findFilmById(int filmId) {
 		Film film = null;
 
-		String user = "student";
-		String pass = "student";
-		Connection conn = DriverManager.getConnection(URL, user, pass);
+		String sql = "SELECT film.id, film.title, film.release_year, film.rating ,film.rental_duration, film.language_id, film.rental_rate,film.length,film.replacement_cost,film.rating,film.special_features,film.description, language.name, category.name, actor.id, actor.first_name, actor.last_name "
+				+ "FROM film " + "LEFT OUTER JOIN film_category ON film.id = film_category.film_id "
+				+ "LEFT OUTER JOIN category ON film_category.category_id = category.id "
+				+ "LEFT OUTER JOIN language ON film.language_id = language.id "
+				+ "LEFT OUTER JOIN film_actor ON film.id = film_actor.film_id "
+				+ "LEFT OUTER JOIN actor ON film_actor.actor_id = actor.id " + "WHERE film.id = ?";
 
-		String sql = "SELECT film.id, film.title, film.release_year, film.rating ,film.rental_duration,"
-				+ "film.rental_rate,film.length,film.replacement_cost,film.rating,film.special_features,"
-				+ "film.description, language.name FROM film JOIN language ON film.language_id = language.id WHERE film.id = ?";
-		PreparedStatement stmt = conn.prepareStatement(sql);
-		stmt.setInt(1, filmId);
-		ResultSet filmResult = stmt.executeQuery();
-		if (filmResult.next()) {
+		try (Connection conn = DriverManager.getConnection(URL, USER, PASS);
+				PreparedStatement stmt = conn.prepareStatement(sql);) {
 
-			film = (new Film(filmResult.getInt("film.id"), filmResult.getString("film.title"),
-					filmResult.getString("film.description"), filmResult.getString("film.release_year"),
-					filmResult.getInt("film.rental_duration"), filmResult.getDouble("film.rental_rate"),
-					filmResult.getInt("film.length"), filmResult.getDouble("film.replacement_cost"),
-					filmResult.getString("film.rating"), filmResult.getString("film.special_features"),
-					filmResult.getString("language.name")));
+			stmt.setInt(1, filmId);
+			
+			ResultSet filmResult = stmt.executeQuery();
+			
+			List<Actor> castList = new ArrayList<>();
 
+			while (filmResult.next()) {
+				Actor actor = new Actor(filmResult.getInt("actor.id"), filmResult.getString("actor.first_name"),
+						filmResult.getString("actor.last_name"));
+				
+				castList.add(actor);
+			}
+
+			filmResult.first();
+			if (filmResult.next()) {
+
+				film = (new Film(filmResult.getInt("film.id"), filmResult.getString("film.title"),
+						filmResult.getString("film.description"), filmResult.getString("film.release_year"),
+						filmResult.getInt("film.language_id"), filmResult.getInt("film.rental_duration"),
+						filmResult.getDouble("film.rental_rate"), filmResult.getInt("film.length"),
+						filmResult.getDouble("film.replacement_cost"), filmResult.getString("film.rating"),
+						filmResult.getString("film.special_features"), filmResult.getString("language.name"), castList,
+						filmResult.getString("category.name")));
+			}
+			filmResult.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-
-		filmResult.close();
-		stmt.close();
-		conn.close();
-
 		return film;
 	}
-
-	@Override
-	public Actor findActorById(int actorId) throws SQLException {
-		Actor actor = null;
-
-		String user = "student";
-		String pass = "student";
-		Connection conn = DriverManager.getConnection(URL, user, pass);
-
-		String sql = "SELECT id, first_name, last_name FROM actor WHERE id = ?";
-		PreparedStatement stmt = conn.prepareStatement(sql);
-		stmt.setInt(1, actorId);
-		ResultSet actorResult = stmt.executeQuery();
-		if (actorResult.next()) {
-			actor = new Actor();
-			actor.setId(actorResult.getInt("id"));
-			actor.setFirstName(actorResult.getString("first_name"));
-			actor.setLastName(actorResult.getString("last_name"));
-		}
-
-		actorResult.close();
-		stmt.close();
-		conn.close();
-
-		return actor;
-
-	}
+	
+	
+//	@Override
+//	public Actor findActorById(int actorId) throws SQLException {
+//		Actor actor = null;
+//
+//		Connection conn = DriverManager.getConnection(URL, USER, PASS);
+//
+//		String sql = "SELECT id, first_name, last_name FROM actor WHERE id = ?";
+//		PreparedStatement stmt = conn.prepareStatement(sql);
+//		stmt.setInt(1, actorId);
+//		ResultSet actorResult = stmt.executeQuery();
+//		if (actorResult.next()) {
+//			actor = new Actor();
+//			actor.setId(actorResult.getInt("id"));
+//			actor.setFirstName(actorResult.getString("first_name"));
+//			actor.setLastName(actorResult.getString("last_name"));
+//		}
+//
+//		actorResult.close();
+//		stmt.close();
+//		conn.close();
+//
+//		return actor;
+//
+//	}
 
 	@Override
 	public List<Actor> findActorsByFilmId(int filmId) {
 
 		List<Actor> actors = new ArrayList<>();
 
-		String user = "student";
-		String pass = "student";
-
-		try  {
-			Connection conn = DriverManager.getConnection(URL, user, pass);
+		try {
+			Connection conn = DriverManager.getConnection(URL, USER, PASS);
 
 			String sql = "SELECT * FROM actor JOIN film_actor ON actor.id = film_actor.actor_id WHERE film_id = ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
@@ -115,16 +127,13 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 			e.printStackTrace();
 		}
 		return actors;
-
 	}
 
 	@Override
 	public Film createFilm(Film film) {
-		String user = "student";
-		String pass = "student";
 		String sqlInsert = "INSERT INTO film " + "(title, description, release_year, language_id, rental_duration, "
 				+ "rental_rate, length, replacement_cost, rating, special_features) " + "VALUES (?,?,?,?,?,?,?,?,?,?)";
-		try (Connection conn = DriverManager.getConnection(URL, user, pass);) {
+		try (Connection conn = DriverManager.getConnection(URL, USER, PASS);) {
 
 			conn.setAutoCommit(false);
 
@@ -176,13 +185,10 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 	@Override
 	public boolean deleteFilm(Film film) {
 
-		String user = "student";
-		String pass = "student";
-
 		Connection conn = null;
 
 		try {
-			conn = DriverManager.getConnection(URL, user, pass);
+			conn = DriverManager.getConnection(URL, USER, PASS);
 
 			conn.setAutoCommit(false); // START TRANSACTION
 
@@ -214,16 +220,13 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 	@Override
 	public boolean updateFilm(Film film) {
 
-		String user = "student";
-		String pass = "student";
-
 		boolean filmSaved = false;
 		String sqlDelete = "UPDATE film "
 				+ "SET title = ?, description = ?, release_year = ?, language_id = ?, rental_duration = ?, "
 				+ "rental_rate = ?, length = ?, replacement_cost = ?, rating = ?, special_features = ? "
 				+ "WHERE id = ?";
 
-		try (Connection conn = DriverManager.getConnection(URL, user, pass);) {
+		try (Connection conn = DriverManager.getConnection(URL, USER, PASS);) {
 
 			conn.setAutoCommit(false);
 
@@ -274,19 +277,18 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 
 		List<Film> filmResults = new ArrayList<>();
 
-		String user = "student";
-		String pass = "student";
-
 		String[] keyWords = searchText.split(" ");
 
 		String sqlQuery = "SELECT * FROM film " + "JOIN language ON film.language_id = language.id "
 				+ "WHERE title LIKE ? OR description LIKE ? ";
+
 		if (keyWords.length > 1) {
 			for (int i = 0; i < (keyWords.length - 1); i++) {
 				sqlQuery += "OR title LIKE ? OR description LIKE ?";
 			}
 		}
-		try (Connection conn = DriverManager.getConnection(URL, user, pass);
+
+		try (Connection conn = DriverManager.getConnection(URL, USER, PASS);
 				PreparedStatement stmt = conn.prepareStatement(sqlQuery);) {
 			int bindPosition = 1;
 			for (String searchWord : keyWords) {
@@ -316,11 +318,8 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 
 		Category category = null;
 
-		String user = "student";
-		String pass = "student";
-
 		try {
-			Connection conn = DriverManager.getConnection(URL, user, pass);
+			Connection conn = DriverManager.getConnection(URL, USER, PASS);
 
 			String sql = "SELECT film.id, category.name , category.id FROM film JOIN film_category ON film.id = film_category.film_id\n"
 					+ "JOIN category ON film_category.category_id = category.id WHERE film_id = ?";
