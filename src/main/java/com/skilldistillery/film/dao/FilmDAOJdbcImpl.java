@@ -47,19 +47,19 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 				PreparedStatement stmt = conn.prepareStatement(sql);) {
 
 			stmt.setInt(1, filmId);
-			
+
 			ResultSet filmResult = stmt.executeQuery();
-			
+
 			List<Actor> castList = new ArrayList<>();
 
 			while (filmResult.next()) {
 				Actor actor = new Actor(filmResult.getInt("actor.id"), filmResult.getString("actor.first_name"),
 						filmResult.getString("actor.last_name"));
-				
+
 				castList.add(actor);
 			}
 
-			filmResult.first();
+			filmResult.beforeFirst();
 			if (filmResult.next()) {
 
 				film = (new Film(filmResult.getInt("film.id"), filmResult.getString("film.title"),
@@ -70,15 +70,16 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 						filmResult.getString("film.special_features"), filmResult.getString("language.name"), castList,
 						filmResult.getString("category.name")));
 			}
+		
+
 			filmResult.close();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return film;
 	}
-	
-	
+
 //	@Override
 //	public Actor findActorById(int actorId) throws SQLException {
 //		Actor actor = null;

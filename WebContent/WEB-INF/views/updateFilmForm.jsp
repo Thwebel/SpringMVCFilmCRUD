@@ -269,7 +269,8 @@
 		<br>
 		<hr>
 		<br>
-		
+		<%-- <input type="hidden" name="actors" value="${film.actors}">
+		<input type="hidden" name="category" value="${film.category}"> --%>
 		<button type="submit" class="niceButton">Update</button>
 			
 			

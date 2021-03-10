@@ -91,7 +91,7 @@
 
 			<c:choose>
 
-				<c:when test="${empty film.actors}">
+				<c:when test="${empty film.actors or film.actors.get(0).getId() == 0}">
 					<h3>No actors were found</h3>
 				</c:when>
 
